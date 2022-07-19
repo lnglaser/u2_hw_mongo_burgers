@@ -1,5 +1,16 @@
 // create 5 burgers (at least 3 should be beef)
-
+db.burgers.insertMany([
+  { menuItem: '01', patty: 'beef', cheese: 'single', toppings: 'tomatos' },
+  { menuItem: '02', patty: 'beef', cheese: 'single', toppings: 'mushrooms' },
+  { menuItem: '03', patty: 'beef', cheese: 'none', toppings: 'jalapenos' },
+  { menuItem: '04', patty: 'chicken', cheese: 'single', toppings: 'spinach' },
+  {
+    menuItem: '05',
+    patty: 'turkey',
+    cheese: 'none',
+    toppings: 'cranberry sauce'
+  }
+])
 // find all the burgers
 
 // show just the meat of each burger
@@ -48,4 +59,4 @@
 // add a topping of 'eggs' to all the beef burgers
 //note since this db is 'reset' there should be no veggie burgers, all beef burgers should still be intact
 
-//Add a price to each burger, start with $5.00 for each burger 
+//Add a price to each burger, start with $5.00 for each burger
