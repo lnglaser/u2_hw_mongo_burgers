@@ -14,7 +14,7 @@ db.burgers.insertMany([
 // find all the burgers
 db.burgers.find({})
 // show just the meat of each burger
-
+db.burgers.find({}, { patty: 1 })
 // show just the toppings of each burger
 
 // show everything but the cheese
