@@ -18,7 +18,7 @@ db.burgers.find({}, { patty: 1 })
 // show just the toppings of each burger
 db.burgers.find({}, { toppings: 1 })
 // show everything but the cheese
-
+db.burgers.find({}, { menuItem: 1, patty: 1, toppings: 1 })
 // find all the burgers with beef
 
 // find all the burgers that are not beef
