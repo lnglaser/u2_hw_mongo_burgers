@@ -22,7 +22,7 @@ db.burgers.find({}, { menuItem: 1, patty: 1, toppings: 1 })
 // find all the burgers with beef
 db.burgers.find({ patty: 'beef' })
 // find all the burgers that are not beef
-
+db.burgers.find({ patty: { $ne: 'beef' } })
 // find the first burger with cheese
 
 // find one and update the first burger with cheese to have a property of 'double cheese'
