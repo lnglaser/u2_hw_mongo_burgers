@@ -12,7 +12,7 @@ db.burgers.insertMany([
   }
 ])
 // find all the burgers
-
+db.burgers.find({})
 // show just the meat of each burger
 
 // show just the toppings of each burger
