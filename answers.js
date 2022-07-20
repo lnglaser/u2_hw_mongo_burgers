@@ -71,23 +71,31 @@ use burgersDatabase
 
 //copy paste your insert burgers from above to reseed your database
 db.burgers.insertMany([
-    { menuItem: '01', patty: 'beef', cheese: 'single', toppings: 'tomatos' },
-    { menuItem: '02', patty: 'beef', cheese: 'single', toppings: 'mushrooms' },
-    { menuItem: '03', patty: 'beef', cheese: 'none', toppings: 'jalapenos' },
-    { menuItem: '04', patty: 'chicken', cheese: 'single', toppings: 'spinach' },
-    { menuItem: '05', patty: 'turkey', cheese: 'none', toppings: 'cranberry sauce'},
-    { menuItem: '06', patty: 'turkey', cheese: 'single', toppings: 'cranberry sauce'},
-    { menuItem: '07', patty: 'fish', cheese: 'none', toppings: 'purple cabbage'},
-    { menuItem: '08', patty: 'impossible', cheese: 'none', toppings: 'pickles'},
+    { menuItem: '01', patty: 'beef', cheese: 'single', toppings: ['tomatos', 'lettuce', 'onions']},
+    { menuItem: '02', patty: 'beef', cheese: 'single', toppings: ['truffles', 'lettuce', 'tomatos' ]},
+    { menuItem: '03', patty: 'beef', cheese: 'none', toppings: ['onions', 'pineapple rings']},
+    { menuItem: '04', patty: 'chicken', cheese: 'single', toppings: ['spinach', 'mushrooms']},
+    { menuItem: '05', patty: 'turkey', cheese: 'none', toppings: ['cranberry sauce', 'pickles']},
+    { menuItem: '06', patty: 'turkey', cheese: 'single', toppings: ['cranberry sauce', 'green beans']},
+    { menuItem: '07', patty: 'salmon', cheese: 'none', toppings: ['purple cabbage', 'tomatos']},
+    { menuItem: '08', patty: 'impossible', cheese: 'none', toppings: ['pickles', 'coleslaw']},
   ])
 // Change the name of the key cheese to 'pumpkinSpice'
 db.burgers.updateMany({}, {$rename: {cheese: `pumpkinSpice`}}) //took 3 tries before I realized I had to use back ticks
 
 // find all the burgers with ketchup (or another topping you used at least once)
+db.burgers.find( {toppings: 'cranberry sauce'})
 
 // find all the burgers with pickles (or a topping you used more than once) and remove the pickles
+db.burgers.updateMany( {toppings: 'cranberry sauce'}, {$unset: {toppings}}) //removes all toppings
+db.burgers.updateMany( {toppings: 'cranberry sauce'}, {$pull: {'toppings':'cranberry sauce'}})//removes only cranberry sauce
 
 // add a topping of 'eggs' to all the beef burgers
+db.burgers.updateMany( {patty: 'beef'}, {$push: {'toppings':'eggs'}})
+
 //note since this db is 'reset' there should be no veggie burgers, all beef burgers should still be intact
 
 //Add a price to each burger, start with $5.00 for each burger
+db.burgers.updateMany({}, {$set: {price: "$5.00"}})
+
+db.burgers.updateOne({toppings: "truffles"}, {$set: {price: "$60.00"}})
