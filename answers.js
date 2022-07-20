@@ -55,19 +55,33 @@ db.burgers.deleteOne({ patty: 'veggie' })
 //Expected Output
 //true
 db.burgers.drop()
+
 // drop the database
 //Expected Output
 // {
 //   "dropped": "burgers",
 //   "ok": 1
 // }
+db.dropDatabase()
 
 //
 // Bonus
 //recreate your burgers database and your burger collection
-//copy paste your insert burgers from above to reseed your database
+use burgersDatabase
 
+//copy paste your insert burgers from above to reseed your database
+db.burgers.insertMany([
+    { menuItem: '01', patty: 'beef', cheese: 'single', toppings: 'tomatos' },
+    { menuItem: '02', patty: 'beef', cheese: 'single', toppings: 'mushrooms' },
+    { menuItem: '03', patty: 'beef', cheese: 'none', toppings: 'jalapenos' },
+    { menuItem: '04', patty: 'chicken', cheese: 'single', toppings: 'spinach' },
+    { menuItem: '05', patty: 'turkey', cheese: 'none', toppings: 'cranberry sauce'},
+    { menuItem: '06', patty: 'turkey', cheese: 'single', toppings: 'cranberry sauce'},
+    { menuItem: '07', patty: 'fish', cheese: 'none', toppings: 'purple cabbage'},
+    { menuItem: '08', patty: 'impossible', cheese: 'none', toppings: 'pickles'},
+  ])
 // Change the name of the key cheese to 'pumpkinSpice'
+db.burgers.updateMany({}, {$rename: {cheese: `pumpkinSpice`}}) //took 3 tries before I realized I had to use back ticks
 
 // find all the burgers with ketchup (or another topping you used at least once)
 
