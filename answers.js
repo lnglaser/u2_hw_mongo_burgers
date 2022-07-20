@@ -11,11 +11,13 @@ db.burgers.insertMany([
     toppings: 'cranberry sauce'
   }
 ])
+
 // find all the burgers
 db.burgers.find({})
 
 // show just the meat of each burger
 db.burgers.find({}, { patty: 1 })
+
 // show just the toppings of each burger
 db.burgers.find({}, { toppings: 1 })
 
@@ -43,6 +45,7 @@ db.burgers.find({ cheese: 'double cheese' })
 db.burgers.find({ cheese: { $in: ['double cheese'] } })
 
 // find and update all the beef burgers to be 'veggie'
+db.burgers.updateMany({ patty: 'beef' }, { $set: { patty: 'veggie' } })
 
 // delete one of your veggie burgers
 // WRONG - dELETES ALL : db.burger.remove({meat: 'veggie'})
