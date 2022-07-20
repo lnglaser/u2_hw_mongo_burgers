@@ -26,7 +26,10 @@ db.burgers.find({ patty: { $ne: 'beef' } })
 // find the first burger with cheese
 db.burgers.findOne({ cheese: 'single' })
 // find one and update the first burger with cheese to have a property of 'double cheese'
-
+db.burgers.updateOne(
+  { cheese: 'single' },
+  { $set: { cheese: 'double cheese' } }
+)
 // find the burger you updated to have double cheese
 
 // find and update all the beef burgers to be 'veggie'
