@@ -13,24 +13,34 @@ db.burgers.insertMany([
 ])
 // find all the burgers
 db.burgers.find({})
+
 // show just the meat of each burger
 db.burgers.find({}, { patty: 1 })
 // show just the toppings of each burger
 db.burgers.find({}, { toppings: 1 })
+
 // show everything but the cheese
 db.burgers.find({}, { menuItem: 1, patty: 1, toppings: 1 })
+
 // find all the burgers with beef
 db.burgers.find({ patty: 'beef' })
+
 // find all the burgers that are not beef
 db.burgers.find({ patty: { $ne: 'beef' } })
+
 // find the first burger with cheese
 db.burgers.findOne({ cheese: 'single' })
+
 // find one and update the first burger with cheese to have a property of 'double cheese'
 db.burgers.updateOne(
   { cheese: 'single' },
   { $set: { cheese: 'double cheese' } }
 )
+
 // find the burger you updated to have double cheese
+db.burgers.find({ cheese: 'double cheese' })
+//or
+db.burgers.find({ cheese: { $in: ['double cheese'] } })
 
 // find and update all the beef burgers to be 'veggie'
 
