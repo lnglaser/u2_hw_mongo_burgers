@@ -49,6 +49,7 @@ db.burgers.updateMany({ patty: 'beef' }, { $set: { patty: 'veggie' } })
 
 // delete one of your veggie burgers
 // WRONG - dELETES ALL : db.burger.remove({meat: 'veggie'})
+db.burgers.deleteOne({ patty: 'veggie' })
 
 // drop the collection
 //Expected Output
