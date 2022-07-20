@@ -54,7 +54,7 @@ db.burgers.deleteOne({ patty: 'veggie' })
 // drop the collection
 //Expected Output
 //true
-
+db.burgers.drop()
 // drop the database
 //Expected Output
 // {
